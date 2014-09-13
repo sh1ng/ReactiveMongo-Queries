@@ -1,0 +1,8 @@
+project/project
+project/target
+queries-spec/target
+queries/target
+*.
+target
+.classpath
+org.scala-ide.sdt.core.prefs
