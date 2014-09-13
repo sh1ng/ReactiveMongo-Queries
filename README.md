@@ -5,10 +5,10 @@
 Suppose we quiry employees with below structure
 ```scala
 case class Contacts(email: String, phone: String)
-case class Employee(name: String, contacts: Contacts)
+case class Employee(name: String, contacts: Contacts, sallary: Int)
 ```
 
-### Getting Employee by name 
+### Getting Employee(s) by name 
 without Queries
 
 ```scala
@@ -22,7 +22,7 @@ import reactivemongo.queries.Query._
 collection.find(on[Employee].eq(_.name, "john"))
 ```
 
-### Getting Employee by email
+### Getting Employee(s) by email
 without Queries
 
 ```scala
@@ -36,22 +36,33 @@ import reactivemongo.queries.Query._
 collection.find(on[Employee].eq(_.contacts.email, "john@company.com"))
 ```
 
-### Updating employee's email
+### Find employees with sallary greater that 100k
 without Queries
 
 ```scala
-collection.update.find(BSONDocument("name" -> "john"), 
-BSONDocument("$set" -> BSONDocument("contacts.email" -> "john@company.com")))
+collection.update.find(BSONDocument("sallary" -> BSONDocument("$gt" -> 100000)))
 ```
 with Queries
 
 ```scala
 import reactivemongo.queries.Query._
 
-collection.update(on[Employee].eq(_.name, "john"), 
-on[Employee].update(_.set(_.contacts.email, "john@company.com")))
+collection.update(on[Employee].gt(_.sallary, 100000))
 ```
 
 
+### Increase sallary for all employees eaning less that 50k on 10%
+without Queries
 
+```scala
+collection.update.find(BSONDocument("sallary" -> BSONDocument("$lt" -> 50000)), 
+BSONDocument("$mul" -> BSONDocument("sallary" -> 1.1)))
+```
+with Queries
 
+```scala
+import reactivemongo.queries.Query._
+
+collection.update(on[Employee].lt(_.sallary, 50000), 
+on[Employee].update(_.mul(_.sallary, 1.1)))
+```
