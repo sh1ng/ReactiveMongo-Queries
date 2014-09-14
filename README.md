@@ -47,7 +47,7 @@ with Queries
 ```scala
 import reactivemongo.queries.Query._
 
-collection.update(on[Employee].gt(_.salary, 100000))
+collection.find(on[Employee].gt(_.salary, 100000))
 ```
 
 
