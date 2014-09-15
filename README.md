@@ -53,7 +53,7 @@ collection.find(on[Employee].gt(_.salary, 100000))
 ```
 
 
-### Increase salary for all employees earning less that 50k on 10%
+### Increase salary for all employees earning less than 50k on 10%
 without Queries
 
 ```scala
