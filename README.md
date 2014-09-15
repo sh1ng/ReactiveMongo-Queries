@@ -38,7 +38,7 @@ import reactivemongo.queries.Query._
 collection.find(on[Employee].eq(_.contacts.email, "john@company.com"))
 ```
 
-### Find employees with salary greater that 100k
+### Find employees with salary greater than 100k
 without Queries
 
 ```scala
