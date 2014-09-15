@@ -1,5 +1,7 @@
 # ReactiveMongo-Queries easier to write queries with ReactiveMongo
 
+## The project'll be published as soon as I get access to nexus repository.
+
 ## Strongly typed queries to sophisticated objects
 
 Suppose we query employees with below structure
@@ -51,7 +53,7 @@ collection.find(on[Employee].gt(_.salary, 100000))
 ```
 
 
-### Increase salary for all employees eaning less that 50k on 10%
+### Increase salary for all employees earning less that 50k on 10%
 without Queries
 
 ```scala
