@@ -2,7 +2,7 @@
 
 ## Strongly typed queries to sophisticated objects
 
-Suppose we quiry employees with below structure
+Suppose we query employees with below structure
 ```scala
 case class Contacts(email: String, phone: String)
 case class Employee(name: String, contacts: Contacts, salary: Int)
@@ -47,7 +47,7 @@ with Queries
 ```scala
 import reactivemongo.queries.Query._
 
-collection.update(on[Employee].gt(_.salary, 100000))
+collection.find(on[Employee].gt(_.salary, 100000))
 ```
 
 
