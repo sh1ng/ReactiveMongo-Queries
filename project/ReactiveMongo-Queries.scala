@@ -14,7 +14,8 @@ object BuildSettings {
   val buildSettings = Defaults.defaultSettings ++ Seq(
     organization := "org.reactivemongo",
     version := buildVersion,
-    scalaVersion := "2.10.4",
+    scalaVersion := "2.11.1",
+    crossScalaVersions := Seq("2.11.1", "2.10.4"),
     javaOptions in test ++= Seq("-Xmx512m", "-XX:MaxPermSize=512m"),
     scalacOptions ++= Seq("-unchecked", "-deprecation"),
     scalacOptions in (Compile, doc) ++= Seq("-unchecked", "-deprecation", "-diagrams", "-implicits", "-skip-packages", "samples"),
@@ -112,14 +113,15 @@ object ShellPrompt {
 object Resolvers {
   val typesafe = Seq(
     "Typesafe repository snapshots" at "http://repo.typesafe.com/typesafe/snapshots/",
-    "Typesafe repository releases" at "http://repo.typesafe.com/typesafe/releases/")
+    "Typesafe repository releases" at "http://repo.typesafe.com/typesafe/releases/",
+    "Sonatype Snapshots 1" at "https://oss.sonatype.org/content/repositories/snapshots/")
   val resolversList = typesafe
 }
 
 object Dependencies {
-  val reactivemongo = "org.reactivemongo" %% "reactivemongo" % "0.10.0"
+  val reactivemongo = "org.reactivemongo" %% "reactivemongo" % "0.10.5.akka23-SNAPSHOT"
   val specs = "org.specs2" %% "specs2" % "2.4.2" % "test"
-  val scalatest = "org.scalatest" % "scalatest_2.10" % "2.1.3" % "test"
+  val scalatest = "org.scalatest" % "scalatest_2.11" % "2.2.1" % "test"
 }
 
 object ReactiveMongoQueriesBuild extends Build {
@@ -139,14 +141,16 @@ object ReactiveMongoQueriesBuild extends Build {
     file("queries"),
     settings = buildSettings ++ Seq(
       resolvers := resolversList,
-      libraryDependencies <+= (scalaVersion)("org.scala-lang" % "scala-compiler" % _)
+      libraryDependencies += "org.scala-lang" % "scala-compiler" % scalaVersion.value
     )).
     settings(libraryDependencies += Dependencies.reactivemongo)
 
   lazy val reactivemongoqueriesspecs = Project(
     "ReactiveMongo-QueriesSpec",
     file("queries-spec"),
-    settings = buildSettings ++ (publishArtifact := false)).
+    settings = buildSettings ++ Seq(
+      publishArtifact := false,
+      resolvers := resolversList)).
     settings(libraryDependencies += Dependencies.specs).
     settings(libraryDependencies += Dependencies.scalatest).
     dependsOn (reactivemongoqueries)

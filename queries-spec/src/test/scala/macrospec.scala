@@ -101,7 +101,7 @@ class QueryMacroSpec extends Specification {
   
   "set" in {
    val query = on[Person]
-   val updateQuery = query.update(_.set[String](_.firstName, "john"), _.set(_.lastName, "doe"))
+   val updateQuery = query.update(_.set(_.firstName, "john"), _.set(_.lastName, "doe"))
    
    updateQuery.getAs[BSONDocument]("$set") must beSome(BSONDocument("firstName" -> "john", "lastName" -> "doe"))
   }
