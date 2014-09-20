@@ -12,7 +12,7 @@ object BuildSettings {
   }
 
   val buildSettings = Defaults.defaultSettings ++ Seq(
-    organization := "org.reactivemongo",
+    organization := "com.github.ReactiveMongo-Queries",
     version := buildVersion,
     scalaVersion := "2.11.1",
     crossScalaVersions := Seq("2.11.1", "2.10.4"),
