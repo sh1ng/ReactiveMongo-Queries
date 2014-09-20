@@ -2,7 +2,7 @@ import sbt._
 import sbt.Keys._
 
 object BuildSettings {
-  val buildVersion = "0.10.0-SNAPSHOT"
+  val buildVersion = "0.10.5.a-SNAPSHOT"
 
   val filter = { (ms: Seq[(File, String)]) =>
     ms filter {
@@ -12,7 +12,7 @@ object BuildSettings {
   }
 
   val buildSettings = Defaults.defaultSettings ++ Seq(
-    organization := "org.reactivemongo",
+    organization := "com.github.ReactiveMongo-Queries",
     version := buildVersion,
     scalaVersion := "2.11.1",
     crossScalaVersions := Seq("2.11.1", "2.10.4"),
