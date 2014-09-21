@@ -22,8 +22,10 @@ libraryDependencies ++= Seq(
 )
 ```
 
+Sample project https://github.com/sh1ng/ReactiveMongo-Queries-Sample
 
-## Strongly typed queries to sophisticated objects
+
+## Strongly typed queries to sophisticated objects with autocomplete
 
 Suppose we query employees with below structure
 ```scala
