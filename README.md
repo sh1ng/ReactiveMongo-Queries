@@ -1,6 +1,27 @@
 # ReactiveMongo-Queries easier to write queries with ReactiveMongo
 
-## The project'll be published as soon as I get access to nexus repository.
+ReactiveMongo-Queries is available on sonatype.org.
+
+If you use ReactiveMongo 0.10.0, you just have to edit build.sbt and add the following:
+
+```scala
+resolvers += "Sonatype Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots/"
+
+libraryDependencies ++= Seq(
+  "com.github.ReactiveMongo-Queries" %% "reactivemongo-queries" % "0.10.0.a-SNAPSHOT"
+)
+```
+
+There's a version for 0.10.5.akka23-SNAPSHOT
+
+```scala
+resolvers += "Sonatype Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots/"
+
+libraryDependencies ++= Seq(
+  "com.github.ReactiveMongo-Queries" %% "reactivemongo-queries" % "0.10.5.a-SNAPSHOT"
+)
+```
+
 
 ## Strongly typed queries to sophisticated objects
 
